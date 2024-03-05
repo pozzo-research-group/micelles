@@ -89,26 +89,27 @@ def random():
     """Return a random parameter set for the model."""
     radius_core = 10**np.random.uniform(1, 3)
     rg = radius_core * 10**np.random.uniform(-2, -0.3)
-    length_core = 100**np.random.uniform(1, 3)
+    length_core = radius_core * np.random.uniform(10,100)
     d_penetration = np.random.randn()*0.05 + 1
-    n_aggreg = np.random.randint(3, 30)
-    # volume of head groups is the core volume over the number of groups,
-    # with a correction for packing fraction of the head groups.
-    v_core = (np.pi*radius_core**2 * length_core)/n_aggreg
-    # Rg^2 for gaussian coil is a^2n/6 => a^2 = 6 Rg^2/n
-    # a=2r => r = Rg sqrt(3/2n)
-    # v = 4/3 pi r^3 n => v = 4/3 pi Rg^3 (3/2n)^(3/2) n = pi Rg^3 sqrt(6/n)
-    tail_segments = np.random.randint(6, 30)
-    v_corona = np.pi * rg**3 * np.sqrt(6/tail_segments)
+    v_core = np.random.uniform(3, 5)*(10**3)
+    v_corona = np.random.uniform(3, 5)*(10**3)
+    x_solv = np.random.uniform(0.0, 1.0)
+    sld_solvent = np.random.uniform(0.0, 2.0),
+    sld_core = np.random.uniform(0.0, 2.0),
+    sld_corona = np.random.uniform(0.0, 2.0),
+
     pars = dict(
         background=0,
         scale=1.0,
         v_core=v_core,
         v_corona=v_corona,
+        sld_solvent = sld_solvent,
+        sld_core = sld_core,
+        sld_corona = sld_corona,
         radius_core=radius_core,
-        rg=rg,
         length_core = length_core,
+        rg=rg,
         d_penetration=d_penetration,
-        n_aggreg=n_aggreg,
+        x_solv = x_solv
     )
     return pars
