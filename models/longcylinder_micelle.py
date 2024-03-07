@@ -7,7 +7,7 @@ from math import expm1
 from sasmodels.special import sas_2J1x_x, sas_sinx_x, sas_Si
 from scipy.special import j0 as sas_J0x 
 
-name = "wormlike_micelle"
+name = "longcylinder_micelle"
 title = "Very long cylindrical core with a Gaussian chain micelle"
 description = """ See J. Appl. Cryst. (2000). 33, 637±640
       """
